@@ -1,15 +1,30 @@
+# TELNET AND SSH SCANNER v2.0
+# Made by: weasley 2#2909
+
+# Download python3 and run the file.
+# Put a list with vulnerable ip's in the scripts directory.
+# UPDATE: You can now change the combos and also uncap the timeout
+# as you requested it here you go. Keep in mind it can crash your VPS if it overheats.
+# If you want to uncap the timeout remove the "and timeout_int >= 2"
+# For educational purposes only! If you abuse it or use it inappropriate I don't take any responsibility.
+
+#ALL RIGHTS RESERVED, COPYRIGHT AND TRADEMARK.
+
+
 # import requirements
 import sys
 import time
 import random
 
-# important variables {Change These!}
+# important variables (change these!)
 port_int = 23
-time_out_int = 3
-time_out = str(time_out_int)
+timeout_int = 3
+
+#not this! :P
+timeout = str(timeout_int)
 port = str(port_int)
 
-# numpy arrays with combos
+# arrays with combos (edit this if you want to...)
 combo_user = [
     "user",
     "root",
@@ -21,7 +36,6 @@ combo_user = [
 ]
 
 combo_passw = [
-    "",
     "pass",
     "root",
     "123",     
@@ -47,18 +61,18 @@ except:
 
 # register to a .txt file if successfull hit
 print("\033[H\033[J")
-class pragma_scan:
+class scan:
     def __init__(self, ip, port, user, passw):
         self.ip = ip
         self.port = port
         self.user = user
         self.passw = passw
     def is_valid(self):
-        if self.ip > 1 and len(self.ip) >= 7 and time_out_int <= 61 and time_out_int >= 2:
+        if self.ip > 1 and len(self.ip) >= 7 and timeout_int <= 61 and timeout_int >= 2:# <--- remove or comment this
             file = open("telnet.txt", "a")
             file.write(self.ip + ":" + self.port + " " + self.user + ":" + self.passw + "\n")
             return(
-                    "Successfully registered \033[35m" + self.ip + ":" + self.port + "\033[0m | \033[35mTimeout: \033[0m" + time_out + "\033[0m"
+                    "Successfully registered \033[35m" + self.ip + ":" + self.port + "\033[0m | \033[35mTimeout: \033[0m" + timeout + "\033[0m"
             )
         elif self.port != "23":
             return (
@@ -71,12 +85,12 @@ class pragma_scan:
 
 # start scanner
 print("\033[H\033[J")
-time.sleep(time_out_int)
+time.sleep(timeout_int)
 for ip in combo_ip:
     random_user = random.choice(combo_user)
     random_passw = random.choice(combo_passw)
-    ip_conf = (pragma_scan(ip, port, random_user, random_passw))
-    print(ip_conf.is_valid())
-    time.sleep(time_out_int)
+    config = (scan(ip, port, random_user, random_passw))
+    print(config.is_valid())
+    time.sleep(timeout_int)
 print("\033[32mDone!\033[0m")
 sys.exit()
