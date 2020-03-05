@@ -1,4 +1,4 @@
-# TELNET AND SSH SCANNER v2.0
+# TELNET AND SSH BRUTER v2.0
 # Made by: weasley 2#2909
 
 # Download python3 and run the file as showcased in the video.
@@ -62,7 +62,7 @@ except:
 
 # register to a .txt file if successfull hit
 print("\033[H\033[J")
-class scan:
+class brute:
 	def __init__(self, ip, port, user, passw):
 		self.ip = ip
 		self.port = port
@@ -90,13 +90,13 @@ class scan:
 				"\033[35m" + self.ip + ":" + self.port + "\033[0m is \033[31mnot valid\033[0m!\033[35m 'critical error'\033[0m!"
 				)
 
-# start the scanner
+# start the bruter
 print("\033[H\033[J")
 time.sleep(timeout_int)
 for single_ip in combo_ip:
 	random_user = random.choice(combo_user)
 	random_passw = random.choice(combo_passw)
-	config = (scan(single_ip, port, random_user, random_passw))
+	config = (brute(single_ip, port, random_user, random_passw))
 	print(config.is_valid())
 	time.sleep(timeout_int)
 print("\033[32mDone!\033[0m")
