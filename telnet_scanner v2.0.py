@@ -17,7 +17,7 @@ import sys
 import time
 import random
 
-# important variables (edit these if you want to)
+# important variables (edit these if you want to...)
 port_int = 23
 timeout_int = 3
 
@@ -69,7 +69,7 @@ class scan:
 		self.user = user
 		self.passw = passw
 	def is_valid(self):
-		if len(self.ip) > 1 and len(self.ip) >= 7 and self.ip.__contains__('.') and self.port == "23" and timeout_int <= 61 and timeout_int >= 2: # <--- remove or comment this
+		if len(self.ip) > 1 and len(self.ip) >= 7 and self.ip.__contains__('.') and self.port == "23" and timeout_int <= 61 and timeout_int >= 2: # <--- remove or comment this!
 			file = open("telnet_list.txt", "a")
 			file.write(self.ip + ":" + self.port + " " + self.user + ":" + self.passw + "\n")
 			return(
@@ -81,6 +81,10 @@ class scan:
 			return(
 				"Successfully registered \033[35m" + self.ip + ":" + self.port + "\033[0m | \033[35mTimeout: \033[0m" + timeout + "\033[0m"
 				)
+		elif self.ip.__contains__("[a-zA-Z]") or self.port.__contains__("[a-zA-Z]"):
+			return (
+				"\033[35m" + self.ip + ":" + self.port + "\033[0m is \033[31mnot valid\033[0m!\033[35m 'critical error'\033[0m!"
+				)	
 		else:
 			return (
 				"\033[35m" + self.ip + ":" + self.port + "\033[0m is \033[31mnot valid\033[0m!\033[35m 'critical error'\033[0m!"
@@ -89,10 +93,10 @@ class scan:
 # start the scanner
 print("\033[H\033[J")
 time.sleep(timeout_int)
-for ip in combo_ip:
+for single_ip in combo_ip:
 	random_user = random.choice(combo_user)
 	random_passw = random.choice(combo_passw)
-	config = (scan(ip, port, random_user, random_passw))
+	config = (scan(single_ip, port, random_user, random_passw))
 	print(config.is_valid())
 	time.sleep(timeout_int)
 print("\033[32mDone!\033[0m")
