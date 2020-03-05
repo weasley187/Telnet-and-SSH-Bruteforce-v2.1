@@ -62,7 +62,7 @@ except:
 
 # register to a .txt file if successfull hit
 print("\033[H\033[J")
-class brute:
+class bruteforce:
 	def __init__(self, ip, port, user, passw):
 		self.ip = ip
 		self.port = port
@@ -96,7 +96,7 @@ time.sleep(timeout_int)
 for single_ip in combo_ip:
 	random_user = random.choice(combo_user)
 	random_passw = random.choice(combo_passw)
-	config = (brute(single_ip, port, random_user, random_passw))
+	config = (bruteforce(single_ip, port, random_user, random_passw))
 	print(config.is_valid())
 	time.sleep(timeout_int)
 print("\033[32mDone!\033[0m")
