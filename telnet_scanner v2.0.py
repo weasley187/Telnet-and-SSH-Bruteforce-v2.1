@@ -17,15 +17,15 @@ import sys
 import time
 import random
 
-# important variables (customize your pulls!)
+# important variables (edit these if you want to)
 port_int = 23
 timeout_int = 3
 
-# dont touch this! :P
+# don't touch this! :P
 timeout = str(timeout_int)
 port = str(port_int)
 
-# arrays with combos (edit these if you want to...)
+# arrays with combos (customize your pulls!)
 combo_user = [
 	"user",
 	"root",
@@ -51,7 +51,7 @@ combo_passw = [
 	"password",
 ]
 
-# searching for existing lists
+# searching for an existing lists
 try:
 	with open("list.txt", "r") as iplists:
 		combo_ip = iplists.readlines()
@@ -86,7 +86,7 @@ class scan:
 				"\033[35m" + self.ip + ":" + self.port + "\033[0m is \033[31mnot valid\033[0m!\033[35m 'critical error'\033[0m!"
 				)
 
-# start scanner
+# start the scanner
 print("\033[H\033[J")
 time.sleep(timeout_int)
 for ip in combo_ip:
