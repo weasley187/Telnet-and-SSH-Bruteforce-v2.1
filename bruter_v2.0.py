@@ -3,7 +3,7 @@
 
 # Download python3 and run the file as showcased in the video.
 # Put a list with vulnerable IP's in the scripts directory.
-# UPDATE: New things added to the scanning method now it separates telnet and SSH ports.
+# UPDATE: New things added to the bruteforcing method now it separates telnet and SSH ports.
 # You can now change the combos and also uncap the timeout as you requested it, so here you go.
 # Keep in mind it can crash your VPS if it overheats, so don't mess around with it (for your good).
 # If you want to uncap the timeout remove or comment the following line "and timeout_int >= 2".
