@@ -90,7 +90,7 @@ class bruteforce:
 				"\033[35m" + self.ip + ":" + self.port + "\033[0m is \033[31mnot valid\033[0m!\033[35m 'critical error'\033[0m!"
 				)
 
-# start the bruter
+# start the bruteforce
 print("\033[H\033[J")
 time.sleep(timeout_int)
 for single_ip in combo_ip:
