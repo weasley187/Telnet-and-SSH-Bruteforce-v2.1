@@ -1,4 +1,4 @@
-# TELNET AND SSH BRUTER v2.0
+# TELNET AND SSH BRUTEFORCE v2.0
 # Made by: weasley 2#2909
 
 # Download python3 and run the file as showcased in the video.
