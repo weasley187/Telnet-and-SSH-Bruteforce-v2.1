@@ -21,7 +21,7 @@ import random
 port_int = 23
 timeout_int = 3
 
-# don't touch this! :P
+# don't touche! :P
 timeout = str(timeout_int)
 port = str(port_int)
 
@@ -53,14 +53,16 @@ combo_passw = [
 
 # searching for an existing lists
 try:
-	with open("list.txt", "r") as iplist:
-		sfw_combo = iplist.readlines()
+	with open(
+		"list.txt", "r") as iplist:
+		sfw_combo = iplist.readlines(
+			)
 		sfw_combo = [ip.strip() for ip in sfw_combo]
 except:
 	print("\033[31mERRNO! No 'list.txt' found!\033[0m exit code 1")
 	sys.exit()
 
-# check & register to a .txt file if successfull hit
+# check & register possible combos
 print("\033[H\033[J")
 class bruteforce:
 	def __init__(self, ip, port, user, passw):
