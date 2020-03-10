@@ -94,14 +94,15 @@ class bruteforce:
 			with open("telnet_list.txt", "r") as check_validity:
 				is_valid = check_validity.readlines()
 				is_valid = [valid_combo.strip() for valid_combo in is_valid]
+				data = open("data.tmp", "a")
+				data.write(self.user+ ":"+ self.pasw + " " + is_valid)
 			with open("ssh_list.txt", "r") as check_validity:
 				is_valid = check_validity.readlines()
 				is_valid = [valid_combo.strip() for valid_combo in is_valid]
+				data = open("data.tmp", "a")
+				data.write(self.user+ ":"+ self.pasw + " " + is_valid)
 		except:
-			return
-	def store_data():
-		data = open("data.tmp", "a")
-		data.write(self.user+ self.pasw)		
+			return		
 
 # start the bruteforce
 print("\033[H\033[J")
