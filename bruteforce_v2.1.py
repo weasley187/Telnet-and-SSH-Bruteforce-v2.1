@@ -79,7 +79,7 @@ class bruteforce:
 				)
 		elif self.port == "22":
 			file = open("ssh_list.txt", "a")
-			file.write(self.ip + "/" + self.port + " " + self.user + "/" + self.passw + "\n")
+			file.write(self.ip + "/" + self.port) # + " " + self.user + "/" + self.passw + "\n")
 			return(
 				"Successfully registered \033[35m" + self.ip + ":" + self.port + "\033[0m | \033[35mTimeout: \033[0m" + timeout + "\033[0m"
 				)
