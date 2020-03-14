@@ -18,6 +18,7 @@ import time
 import random
 
 # important variables (edit these if you want to...)
+err_code = 0
 host = 'localhost'
 port_int = 23
 timeout_int = 3
@@ -60,8 +61,9 @@ try:
 			)
 		sfw_combo = [ip.strip() for ip in sfw_combo]
 except:
+	err_code = 1
 	print("\033[H\033[J")
-	print("\033[35mStatus: \033[31mNo list.txt\033[0m exit code 1 \n\033[35mPort: \033[0m" + port+ "\n\033[35mTimeout: \033[0m" + timeout)
+	print("\033[35mStatus: \033[31mNo list.txt\n\033[35mPort: \033[0m" + port+ "\n\033[35mTimeout: \033[0m" + timeout+ "\n\033[35mError Code: \033[0m"+str(err_code))
 	sys.exit()
 
 # check & register possible combos
@@ -108,13 +110,14 @@ def check_validity():
 		except:
 			return
 	else:
+		err_code = 2
 		print("\033[H\033[J")
-		print("\033[35mStatus: \033[31Critical error\033[0m exit code 2 \n\033[35mPort:\033[0m" + port+ "\n\033[35mTimeout:\033[0m" + timeout)
+		print("\033[35mStatus: \033[31Critical error\n\033[35mPort:\033[0m" + port+ "\n\033[35mTimeout:\033[0m" + timeout+ "\n\033[35mError Code: \033[0m"+str(err_code))
 		sys.exit()	
 
 # start the bruteforce
 print("\033[H\033[J")
-print("\033[35mStatus: \033[32mConnected to: \033[0m"+ host +"\n\033[35mPort: \033[0m" + port+ "\n\033[35mTimeout: \033[0m" + timeout)
+print("\033[35mStatus: \033[32mConnected to: \033[0m"+ host +"\n\033[35mPort: \033[0m" + port+ "\n\033[35mTimeout: \033[0m" + timeout+ "\n\033[35mError Code: \033[0m"+str(err_code))
 for single_ip in sfw_combo:
 	time.sleep(timeout_int)
 	random_user = random.choice(combo_user)
@@ -125,5 +128,5 @@ for single_ip in sfw_combo:
 
 # exit code 0
 print("\033[H\033[J")
-print("\033[35mStatus: \033[32mDone!\033[0m exit code 0 \n\033[35mPort: \033[0m" + port+ "\n\033[35mTimeout: \033[0m" + timeout)
+print("\033[35mStatus: \033[32mDone!\n\033[35mPort: \033[0m" + port+ "\n\033[35mTimeout: \033[0m" + timeout + "\n\033[35mError Code: \033[0m"+str(err_code))
 sys.exit()
